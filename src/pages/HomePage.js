@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -22,10 +22,7 @@ function HomePage() {
             <div className=" pt-2 ml-2"></div>
           </div>
 
-          <div
-            className="card-body"
-            style={{ height: 170}}
-          >
+          <div className="card-body" style={{ height: 170 }}>
             <h3> No Blogs Present, Create Blog Posts !!</h3>
           </div>
         </div>
@@ -37,7 +34,6 @@ function HomePage() {
     blog.map((blog, index) => {
       const currentDate = new Date(blog.createdAt);
 
-   
       const formattedDate = currentDate?.toLocaleDateString("en-US", options);
 
       return (
@@ -62,8 +58,11 @@ function HomePage() {
               className="card-body"
               style={{ height: 170, overflowY: "scroll" }}
             >
-              <h6> Description : <span> {blog.description}</span></h6>
-              <hr/>
+              <h6>
+                {" "}
+                Description : <span> {blog.description}</span>
+              </h6>
+              <hr />
               <div dangerouslySetInnerHTML={{ __html: blog.content }} />
             </div>
 

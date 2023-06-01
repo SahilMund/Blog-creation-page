@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -9,16 +9,21 @@ const editorConfiguration = {
 };
 
 const CreateBlog = () => {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("<p>Write your blog post ...</p>");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const [btnloader, setbtnLoader] = useState(false);
+  const [displayMsg, setDisplayMsg] = useState(false);
+
+  useEffect(() => {
+    setDisplayMsg(false);
+  }, []);
 
   const resetForm = () => {
     setTitle("");
     setDescription("");
-    setContent("");
+    setContent("<p>Write your blog post ...</p>");
     return;
   };
 
@@ -44,10 +49,27 @@ const CreateBlog = () => {
 
     resetForm();
     setbtnLoader(false);
+    setDisplayMsg(true);
   };
 
   return (
     <div className="container mt-5">
+      {displayMsg && (
+        <div
+          className="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Yay !!</strong> Your blog posted successfully !!
+          <button
+            type="button"
+            className="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      )}
       <h2>Create blog</h2>
 
       <div>
@@ -74,7 +96,7 @@ const CreateBlog = () => {
 
         <CKEditor
           editor={ClassicEditor}
-          data="<p>Write your blog post ...</p>"
+          data={content}
           onChange={(event, editor) => {
             const data = editor.getData();
             setContent(data);
@@ -83,24 +105,13 @@ const CreateBlog = () => {
         />
 
         <form onSubmit={onSubmit}>
-          {btnloader == false ? (
-            <button className="btn btn-block m-3 btn-info" onSubmit={onSubmit}>
-              Submit
-            </button>
-          ) : (
-            <button
-              className="btn btn-block btn-info m-3"
-              type="button"
-              disabled
-            >
-              <span
-                className="spinner-border spinner-border-sm"
-                role="status"
-                aria-hidden="true"
-              ></span>
-              Loading...
-            </button>
-          )}
+          <button
+            className="btn btn-block m-3 btn-info"
+            onSubmit={onSubmit}
+            disabled={btnloader}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
