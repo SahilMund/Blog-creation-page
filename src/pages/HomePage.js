@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import Spinner from "../components/Spinner";
 import { getDataFromLocalStorage } from "../utils/localStorage";
 
 function HomePage() {
@@ -30,7 +29,7 @@ function HomePage() {
     );
   }
 
-  const renderCards = blog ? (
+  const renderCards = blog && (
     blog.map((blog, index) => {
       const currentDate = new Date(blog.createdAt);
 
@@ -80,9 +79,7 @@ function HomePage() {
         </div>
       );
     })
-  ) : (
-    <Spinner />
-  );
+  ) 
 
   return (
     <div className="container mt-3">

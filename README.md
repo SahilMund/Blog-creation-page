@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Blog Creation Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the code for a blog creation page with the following features:
 
-## Available Scripts
+1. <strong>Title Field</strong>: A field where users can enter the title of the blog post.
+2. <strong>Description Field</strong>: A field where users can enter a brief description of the blog post.
+3. <strong>Content Field</strong>: A rich text editor powered by CKEditor library, allowing users to write and format the content of the blog post.
+4. <strong>Submit Button</strong>: A button that performs local validations on the fields before submitting the blog post.
+5. <strong>Responsiveness</strong>: The page is designed to scale well for both smaller mobile and larger desktop displays using Bootstrap framework.
+6. <strong>Styling</strong>: The page is styled with a decent design to make it visually appealing.
+7. <strong>Validation</strong>: Local validations are implemented to ensure that all required fields are filled before submitting the blog post.
+8. <strong>Code Structure</strong>: The code is well-structured, organized into smaller logical chunks with proper documentation.
+9. <strong>Local Storage</strong>: Once the blog post is submitted, the details are stored in the browser's local storage. 
+10. <strong> Home Page</strong>: The home page fetches the blog post details from local storage and displays them in the user interface.
 
-In the project directory, you can run:
+## Getting Started :-
 
-### `npm start`
+To run the blog creation page locally, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this repository to your local machine or download the source code as a ZIP file.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone https://github.com/SahilMund/Blog-creation-page.git
+```
 
-### `npm test`
+2. Open the project in your preferred code editor.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install the dependencies by running the following command:
 
-### `npm run build`
+```
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the development server with the following command:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Open your web browser and visit http://localhost:3000 to view the blog creation page.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Dependencies :-
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The blog creation page utilizes the following dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- React: JavaScript library for building user interfaces.
+- React Router: Library for handling routing in a React application.
+- Bootstrap: CSS framework for responsive and mobile-first web development.
+- CKEditor: Rich text editor library for creating and formatting the content.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Folder Structure :-
 
-## Learn More
+```
+.gitignore
+README.md
+package-lock.json
+package.json
+public
+   |-- 404.html
+   |-- favicon.ico
+   |-- index.html
+   |-- logo192.png
+   |-- logo512.png
+   |-- manifest.json
+   |-- robots.txt
+src
+   |-- App.css
+   |-- App.js
+   |-- components
+   |   |-- NavBar.js
+   |   |-- Spinner.js
+   |-- index.css
+   |-- index.js
+   |-- pages
+   |   |-- 404.js
+   |   |-- CreateBlog.js
+   |   |-- HomePage.js
+   |-- styles.js
+   |-- utils
+   |   |-- localStorage.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The public folder contains the HTML template and other static assets.
+- The src folder contains the source code for the blog creation page.
+- The components and pages folder contains the React components for creating the blog and displaying the home page and Navbar component.
+- The utils folder contains utility functions for working with local storage.
+- The App.js file is the main entry point of the application.
+- The index.js file is responsible for rendering the React components into the DOM.
+- The index.css file contains the global CSS styles for the application.
+- The .gitignore file specifies which files and directories should be ignored by version control.
+- The package.json file lists the project's dependencies and contains scripts for running the application.
+- The README.md file provides information about the project and how to run it.
