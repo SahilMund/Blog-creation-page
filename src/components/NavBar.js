@@ -10,7 +10,7 @@ const NavBar = () => {
     return [
       <li className="nav-item " key={3}>
         <Link className="nav-link text-white font-weight-bold" to="/create">
-          create{" "}
+          Create{" "}
         </Link>
       </li>,
 
@@ -20,7 +20,7 @@ const NavBar = () => {
           to=""
           onClick={handleClearStorage}
         >
-          Clear All Blogs
+          Clear All
         </Link>
       </li>,
     ];

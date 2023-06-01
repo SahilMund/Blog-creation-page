@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
 import { storeDataToLocalStorage } from "../utils/localStorage";
 
 const editorConfiguration = {
@@ -9,32 +8,47 @@ const editorConfiguration = {
 };
 
 const CreateBlog = () => {
-  const [content, setContent] = useState("<p>Write your blog post ...</p>");
+  const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [btnloader, setBtnLoader] = useState(false);
 
-  const [btnloader, setbtnLoader] = useState(false);
-  const [displayMsg, setDisplayMsg] = useState(false);
+  const [displayAlert, setDisplayAlert] = useState(null);
 
   useEffect(() => {
-    setDisplayMsg(false);
+    setDisplayAlert(null);
   }, []);
 
   const resetForm = () => {
     setTitle("");
     setDescription("");
-    setContent("<p>Write your blog post ...</p>");
+    setContent("");
     return;
   };
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setbtnLoader(true);
+    setBtnLoader(true);
 
-    if (!title || !description || !content) {
-      alert("title, description and content all are required fields");
-      resetForm();
-      setbtnLoader(false);
+
+    if (!title || !content || !description) {
+      (!title &&
+        setDisplayAlert({
+          msg: "Please Enter the blog title",
+          type: "danger",
+        })) ||
+        (!content &&
+          setDisplayAlert({
+            msg: "Please Enter the blog content",
+            type: "danger",
+          })) ||
+        (!description &&
+          setDisplayAlert({
+            msg: "Please Enter the blog description",
+            type: "danger",
+          }));
+
+      setBtnLoader(false);
       return;
     }
 
@@ -47,67 +61,72 @@ const CreateBlog = () => {
 
     storeDataToLocalStorage("blogData", formData);
 
+    setDisplayAlert({msg: "YAY!! Your blog posted successfully !!", type:"success"})
     resetForm();
-    setbtnLoader(false);
-    setDisplayMsg(true);
+    setBtnLoader(false);
   };
 
   return (
-    <div className="container mt-5">
-      {displayMsg && (
+    <div className="container mt-5 min-w-1000px">
+      {displayAlert && (
         <div
-          className="alert alert-success alert-dismissible fade show"
+          className={`alert alert-${displayAlert.type} alert-dismissible fade show`}
           role="alert"
         >
-          <strong>Yay !!</strong> Your blog posted successfully !!
+          {displayAlert.msg}
           <button
             type="button"
             className="close"
             data-dismiss="alert"
             aria-label="Close"
+            onClick={() => setDisplayAlert(null)}
           >
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       )}
+
       <h2>Create blog</h2>
 
       <div>
-        <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Blog title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            id="validationCustom03"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Blog Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Blog title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              id="validationCustom03"
+            />
+            <div className="invalid-feedback">Please enter a blog title.</div>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Blog Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
 
-        <CKEditor
-          editor={ClassicEditor}
-          data={content}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setContent(data);
-          }}
-          config={editorConfiguration}
-        />
+          <CKEditor
+            editor={ClassicEditor}
+            data={content}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              setContent(data);
+            }}
+            config={{
+              ...editorConfiguration,
+              placeholder: "Write your blog post ...",
+            }}
+          />
 
-        <form onSubmit={onSubmit}>
           <button
-            className="btn btn-block m-3 btn-info"
-            onSubmit={onSubmit}
+            className="btn btn-block mt-3 btn-info"
+            type="submit"
             disabled={btnloader}
           >
             Submit
