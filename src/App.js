@@ -22,7 +22,7 @@ const Routing = () => {
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/Blog-creation-page">
         <NavBar />
         <Routing />
       </BrowserRouter>

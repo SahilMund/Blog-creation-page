@@ -1,6 +1,7 @@
 {
   "name": "react-blog-app",
   "version": "0.1.0",
+  "homepage": "https://SahilMund.github.io/Blog-creation-page",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^38.0.1",
@@ -11,6 +12,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^4.5.0",
     "cloudinary": "^1.37.0",
+    "gh-pages": "^5.0.0",
     "jquery": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
