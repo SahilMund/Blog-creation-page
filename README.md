@@ -69,7 +69,6 @@ src
    |-- App.js
    |-- components
    |   |-- NavBar.js
-   |   |-- Spinner.js
    |-- index.css
    |-- index.js
    |-- pages
